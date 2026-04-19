@@ -6,7 +6,7 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 00:00:00 by aylee             #+#    #+#             */
-/*   Updated: 2026/04/19 00:00:00 by aylee            ###   ########.fr       */
+/*   Updated: 2026/04/19 17:18:36 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 */
 void	init_ray(t_game *game, t_ray *ray, int x)
 {
-	ray->camera_x = 2.0 * x / (double)WIDTH - 1.0;
+	ray->camera_x = 2 * x / (double)WIDTH - 1;
 	ray->dir_x = game->player.dir_x + game->player.plane_x * ray->camera_x;
 	ray->dir_y = game->player.dir_y + game->player.plane_y * ray->camera_x;
 	ray->map_x = (int)game->player.pos_x;
 	ray->map_y = (int)game->player.pos_y;
 	ray->hit = 0;
 	if (ray->dir_x == 0.0)
-		ray->delta_dist_x = 1e30;
+		ray->delta_dist_x = 1e30; //실용적인 가짜 무한대. 10^30을 의미
 	else
 		ray->delta_dist_x = fabs(1.0 / ray->dir_x);
 	if (ray->dir_y == 0.0)
@@ -41,11 +41,11 @@ void	init_ray(t_game *game, t_ray *ray, int x)
 */
 void	calc_step_and_sidedist(t_game *game, t_ray *ray)
 {
-	if (ray->dir_x < 0)
+	if (ray->dir_x < 0) //왼쪽으로 가는 광선
 	{
 		ray->step_x = -1;
 		ray->side_dist_x = (game->player.pos_x - ray->map_x)
-			* ray->delta_dist_x;
+			* ray->delta_dist_x; //실제 광선 길이 단위로 변환.
 	}
 	else
 	{
@@ -79,9 +79,9 @@ void	perform_dda(t_game *game, t_ray *ray)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
+			ray->side_dist_x += ray->delta_dist_x; //다음 x축 격자선까지의 거리로 갱신
+			ray->map_x += ray->step_x; //격자 한 칸 이동
+			ray->side = 0; //x축 방향 벽 충돌
 		}
 		else
 		{
@@ -92,13 +92,13 @@ void	perform_dda(t_game *game, t_ray *ray)
 		if (game->map.grid[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	if (ray->side == 0 && ray->step_x > 0)
+	if (ray->side == 0 && ray->step_x > 0) //동쪽 벽
 		ray->tex_num = TEX_EA;
-	else if (ray->side == 0 && ray->step_x < 0)
+	else if (ray->side == 0 && ray->step_x < 0) //서쪽 벽
 		ray->tex_num = TEX_WE;
-	else if (ray->side == 1 && ray->step_y > 0)
+	else if (ray->side == 1 && ray->step_y > 0) //남쪽 벽
 		ray->tex_num = TEX_SO;
-	else
+	else // 북쪽 벽
 		ray->tex_num = TEX_NO;
 }
 
