@@ -1,10 +1,9 @@
-NAME    = cubparse.a
+NAME    = cubexec.a
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror -g
 AR      = ar rcs
 
-SRCS    = main.c color_parse.c exit_msg.c free.c init.c map_util.c map.c \
-			parse_util.c parse.c texture_parse.c window.c
+SRCS    = event.c move.c raycast.c render.c
 OBJS    = $(patsubst %.c, %.o, $(SRCS))
 
 all: $(NAME)
@@ -13,7 +12,7 @@ $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I ../minilibx-linux -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
