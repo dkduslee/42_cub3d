@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:27:20 by solee             #+#    #+#             */
-/*   Updated: 2026/04/18 16:35:42 by solee            ###   ########.fr       */
+/*   Updated: 2026/04/23 13:40:23 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	map_check(t_arg *arg, char **grid, int i, char *line)
 {
 	if (!line)
 	{
-		grid[i] = '\0';
+		grid[i] = NULL;
 		return ;
 	}
 	grid[i] = ft_strdup(line);

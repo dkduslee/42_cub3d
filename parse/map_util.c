@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:59:06 by solee             #+#    #+#             */
-/*   Updated: 2026/04/15 13:00:14 by solee            ###   ########.fr       */
+/*   Updated: 2026/04/23 13:45:22 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**copy_map(t_arg *arg, t_map *map, char **grid)
 	int		i;
 
 	i = 0;
-	tmp = ft_calloc(sizeof(char *) * (map->height + 1), 0);
+	tmp = ft_calloc((map->height + 1), sizeof(char *));
 	if (!tmp)
 		exit_msg(arg, "Malloc error");
 	while (i < map->height)

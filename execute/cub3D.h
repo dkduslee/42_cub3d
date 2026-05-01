@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/27 15:51:21 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 16:57:25 by solee            ###   ########.fr       */
+/*   Created: 2026/04/12 12:20:59 by aylee             #+#    #+#             */
+/*   Updated: 2026/05/01 16:40:51 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
-# include "libft.h"
-# include "mlx.h"
+# include <string.h>
+# include "../Libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 # define KEY_ESC   65307
 # define KEY_W     119
@@ -82,10 +83,12 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
+	double	perp_wall_dist;
 	int		step_x;
 	int		step_y;
 	int		hit;
 	int		side;
+	int		tex_num;
 }	t_ray;
 
 typedef struct s_game
@@ -98,11 +101,8 @@ typedef struct s_game
 	t_img		tex[4];
 }	t_game;
 
-//...
-
 typedef struct s_arg
 {
-	int	is_valid;
 	t_img	img;
 	t_map	map;
 	t_player	player;
@@ -110,27 +110,31 @@ typedef struct s_arg
 	t_game	game;
 }	t_arg;
 
+/* render.c */
+void	render(t_game *game);
+void	draw_ceiling(t_game *game);
+void	draw_floor(t_game *game);
+void	draw_walls(t_game *game);
 
-void	init_data(t_arg *arg, char *file);
-int	is_file_valid(char *file);
+/* raycast.c */
+void	init_ray(t_game *game, t_ray *ray, int x);
+void	calc_step_and_sidedist(t_game *game, t_ray *ray);
+void	perform_dda(t_game *game, t_ray *ray);
+void	calc_wall_height(t_game *game, t_ray *ray,
+			int *line_height, int *draw_start, int *draw_end);
+void	draw_wall_column(t_game *game, t_ray *ray,
+			int x, int line_height, int draw_start, int draw_end);
 
-int	get_window_size(t_arg *arg, t_map *map, int fd);
-int	img_parse(t_arg *arg, t_map *map, int fd);
+/* move.c */
+void	move_player(t_game *game, int keycode);
+void	rotate_player(t_game *game, int keycode);
 
-void	map_check(t_arg *arg, char **grid, int i, char *line);
-void	texture_check(t_arg *arg, t_map *map, char *line);
-void	color_check(t_arg *arg, t_map *map, char *line);
-int	all_check(t_map *map);
+/* event.c */
+int		handle_key_press(int keycode, t_game *game);
+int		handle_window_close(t_game *game);
 
-int	map_vaild(t_arg *arg, t_map *map);
-
-char	non_whitespace(char *str);
-char	**copy_map(t_arg *arg, t_map *map, char **grid);
-
-int	mlx_setting(t_arg *arg, t_game *game, t_map *map);
-
-void	free_str(char **str);
-
-void	exit_msg(t_arg *arg, char *msg);
+/* utils (구현 필요 시) */
+int		get_pixel_color(t_img *img, int x, int y);
+void	put_pixel(t_game *game, int x, int y, int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:10:21 by solee             #+#    #+#             */
-/*   Updated: 2026/04/19 13:30:34 by solee            ###   ########.fr       */
+/*   Updated: 2026/04/27 12:10:40 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 int	map_parse(t_arg *arg, t_map *map, char **file_dup, int count)
 {
 	int	i;
+	int	width;
 
 	i = count;
+	width = 0;
 	map->grid = ft_calloc(map->height + 1, sizeof(char *));
 	if (!map->grid)
 		return (-1);
 	while (file_dup[i])
 	{
+		if (width < (int)ft_strlen(file_dup[i]))
+			width = (int)ft_strlen(file_dup[i]);
 		map_check(arg, map->grid, i - count, file_dup[i]);
 		i++;
 	}
-	map->grid[i - count] = '\0';
+	if (width < (int)ft_strlen(file_dup[i]))
+		width = (int)ft_strlen(file_dup[i]);
+	map->width = width;
+	map->grid[i - count] = NULL;
 	return (0);
 }
 
@@ -47,8 +54,6 @@ void	map_func(t_arg *arg, char *line, int *count, int *map_check)
 	*map_check = is_space(line, '1');
 	texture_check(arg, &(arg->map), line);
 	color_check(arg, &(arg->map), line);
-	// if (is_space(line, "NO") < 0 || is_space(line, "no") < 0
-	// 	|| is_space(line, "no") < 0 || is_space(line, "no") < 0 || )
 	(*count)++;
 }
 

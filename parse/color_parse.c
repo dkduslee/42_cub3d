@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 16:32:10 by solee             #+#    #+#             */
-/*   Updated: 2026/04/19 13:30:54 by solee            ###   ########.fr       */
+/*   Updated: 2026/04/23 14:05:59 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ char	**get_color(t_arg *arg, char *line, char *c)
 	free_str(tmp);
 	if (!color || !color[0] || !color[1] || !color[2] || color[3])
 		exit_msg(arg, "Color unvaild");
-	if (ft_atoi(color[0]) > 255 || ft_atoi(color[1]) > 255 || ft_atoi(color[2]) > 255
-		|| ft_atoi(color[0]) < 0 || ft_atoi(color[1]) < 0 || ft_atoi(color[2]) < 0)
+	if (ft_atoi(color[0]) > 255 || ft_atoi(color[1]) > 255
+		|| ft_atoi(color[2]) > 255 || ft_atoi(color[0]) < 0
+		|| ft_atoi(color[1]) < 0 || ft_atoi(color[2]) < 0)
 		return (NULL);
 	return (color);
 }
@@ -43,18 +44,22 @@ void	color_check(t_arg *arg, t_map *map, char *line)
 	char	**color;
 	char	c;
 
-	if (!line[0] && !line[1])
+	if (!line[0] || !line[1])
 		return ;
 	color = get_color(arg, line, &c);
 	if (!color)
 		return ;
 	if (c == 'F')
 	{
+		if (map->floor_color != -1)
+			exit_msg(arg, "Need only one floor color");
 		map->floor_color = create_trgb(0, ft_atoi(color[0]),
 				ft_atoi(color[1]), ft_atoi(color[2]));
 	}
 	if (c == 'C')
 	{
+		if (map->ceil_color != -1)
+			exit_msg(arg, "Need only one floor color");
 		map->ceil_color = create_trgb(0, ft_atoi(color[0]),
 				ft_atoi(color[1]), ft_atoi(color[2]));
 	}

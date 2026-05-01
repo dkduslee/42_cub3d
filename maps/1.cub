@@ -1,7 +1,7 @@
-NO ./north_texture
-SO ./south_texture
-WE ./west_texture
-EA ./east_texture
+NO ./textures/1.xpm
+SO ./textures/2.xpm
+WE ./textures/3.xpm
+EA ./textures/4.xpm
 
 F 220,100,0
 C 225,30,0
