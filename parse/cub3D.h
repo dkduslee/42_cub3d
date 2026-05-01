@@ -6,11 +6,12 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 15:51:21 by solee             #+#    #+#             */
-/*   Updated: 2026/04/23 14:39:02 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/01 17:13:34 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
+# define CUB3D_H
 # define CUB3D_H
 
 # include <stdio.h>
@@ -20,6 +21,24 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
+
+# define KEY_ESC   65307
+# define KEY_W     119
+# define KEY_S     115
+# define KEY_A     97
+# define KEY_D     100
+# define KEY_LEFT  65361
+# define KEY_RIGHT 65363
+
+# define WIDTH      640
+# define HEIGHT     480
+# define TEX_WIDTH  64
+# define TEX_HEIGHT 64
+
+# define TEX_NO 0
+# define TEX_SO 1
+# define TEX_WE 2
+# define TEX_EA 3
 
 # define KEY_ESC   65307
 # define KEY_W     119
@@ -126,6 +145,8 @@ int	map_vaild(t_arg *arg, t_map *map);
 
 char	non_whitespace(char *str);
 char	**copy_map(t_arg *arg, t_map *map, char **grid);
+
+int	mlx_setting(t_arg *arg, t_game *game, t_map *map);
 
 int	mlx_setting(t_arg *arg, t_game *game, t_map *map);
 
