@@ -4,7 +4,7 @@ CFLAGS      = -Wall -Wextra -Werror -I./parse -I./excute -I./Libft -I./minilibx-
 LDFLAGS     = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
 PARSE_DIR   = ./parse/
-EXCUTE_DIR  = ./excute/
+EXCUTE_DIR  = ./execute/
 LIBFT_DIR   = ./Libft/
 MLX_DIR     = ./minilibx-linux/
 
@@ -23,7 +23,7 @@ MLX         = $(MLX_DIR)libmlx.a
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES) $(LIBFT) $(MLX)
-	$(CC) $(OBJ_FILES) $(LIBFT) $(LDFLAGS) -o $(NAME)
+	@$(CC) $(OBJ_FILES) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
@@ -32,7 +32,7 @@ $(MLX):
 	@make -C $(MLX_DIR)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@make -C $(LIBFT_DIR) clean
@@ -41,7 +41,7 @@ clean:
 
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

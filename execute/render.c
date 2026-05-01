@@ -6,7 +6,7 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 12:14:17 by aylee             #+#    #+#             */
-/*   Updated: 2026/04/19 00:00:00 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/01 15:51:43 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	draw_walls(t_game *game)
 */
 void	render(t_game *game)
 {
+	printf("Rendering frame...%s\n", game->map.grid[0]); // 디버그용: 맵 데이터 출력
 	draw_ceiling(game);
 	draw_floor(game);
 	draw_walls(game);

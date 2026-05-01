@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 15:51:17 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 13:05:14 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/01 16:06:19 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	main(int ac, char **av)
         exit_msg(&arg, "MLX Error");
 	arg.game.map = arg.map;
 	arg.game.player = arg.player;
-	arg.game.screen = arg.img;
+	// arg.game.screen = arg.img;
 	arg.ray.map_x = arg.map.width;
 	arg.ray.map_y = arg.map.height;
 	printf("%d, %d\n", arg.ray.map_x, arg.ray.map_y);
 	render(&(arg.game));
-	mlx_loop(&(arg.game.mlx));
+	mlx_loop(arg.game.mlx);
 	//그리기
 //	free_all(arg);
 	return (0);

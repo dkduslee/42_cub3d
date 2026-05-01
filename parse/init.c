@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:09:59 by solee             #+#    #+#             */
-/*   Updated: 2026/04/27 12:17:05 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/01 16:01:23 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	init_data(t_arg *arg, char *file)
 		exit_msg(arg, "Map unvaild");
 	if (mlx_setting(arg, &(arg->game), &(arg->map)) < 0)
 		exit_msg(arg, "Mlx error");
+	arg->game.map = arg->map;
+	arg->game.player = arg->player;
 	// printf("x :%d y : %d\n", arg->map.width, arg->map.height);
 	// printf("%s, %s, %s, %s\n0x%X, 0x%X\n", arg->map.no_path, arg->map.so_path, arg->map.we_path, arg->map.ea_path, arg->map.floor_color, arg->map.ceil_color);
 	// while (*(arg->map.grid))
