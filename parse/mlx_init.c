@@ -6,7 +6,7 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 13:19:33 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:17:43 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/03 19:28:54 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int	mlx_setting(t_arg *arg, t_game *game, t_map *map)
 			&game->screen.line_length,
 			&game->screen.endian);
 	mlx_hook(game->win, 17, 0, window_close, arg);
-	mlx_hook(game->win, 2, 1L<<0, handle_key_press, arg);
+	mlx_hook(game->win, 2, 1L<<0, handle_key_press, game);
 	return (0);
 }

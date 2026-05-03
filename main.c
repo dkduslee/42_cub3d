@@ -6,11 +6,17 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 15:51:17 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 18:18:03 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/03 20:30:08 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int game_loop(t_game *game)
+{
+	render(game);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -24,14 +30,9 @@ int	main(int ac, char **av)
 	arg.game.player = arg.player;
 	if (mlx_setting(&arg, &(arg.game), &(arg.map)) < 0)
         exit_msg(&arg, "MLX Error");
-	// arg.game.screen = arg.img;
 	arg.ray.map_x = arg.map.width;
 	arg.ray.map_y = arg.map.height;
-	printf("%d, %d\n", arg.ray.map_x, arg.ray.map_y);
-	printf("pos: %f, %f\n", arg.game.player.pos_x, arg.game.player.pos_y);
-	printf("dir: %f, %f\n", arg.game.player.dir_x, arg.game.player.dir_y);
-	printf("plane: %f, %f\n", arg.game.player.plane_x, arg.game.player.plane_y);
-	render(&(arg.game));
+	mlx_loop_hook(arg.game.mlx, game_loop, &arg.game);
 	mlx_loop(arg.game.mlx);
 	//그리기
 //	free_all(arg);

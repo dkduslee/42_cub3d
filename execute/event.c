@@ -6,7 +6,7 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 12:17:21 by aylee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:18:14 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/03 17:24:42 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	handle_key_press(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);
-		exit(0);
+		exit(0); // 나중에 free 구문으로 변경
 	}
 	if (keycode == KEY_W || keycode == KEY_S
 		|| keycode == KEY_A || keycode == KEY_D)

@@ -6,7 +6,7 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 00:00:00 by aylee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:18:25 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/03 20:31:59 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,22 @@ void	perform_dda(t_game *game, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
+		if (ray->map_y < 0 || ray->map_y >= game->map.height
+			|| ray->map_x < 0 || ray->map_x >= game->map.width)
+		{
+			ray->hit = 1; //맵 밖으로 나가면 충돌 처리
+			break ;
+		}
 		if (game->map.grid[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	if (ray->side == 0 && ray->step_x > 0) //동쪽 벽
+	if (ray->side == 0 && ray->step_x > 0)
 		ray->tex_num = TEX_EA;
-	else if (ray->side == 0 && ray->step_x < 0) //서쪽 벽
+	else if (ray->side == 0 && ray->step_x < 0)
 		ray->tex_num = TEX_WE;
-	else if (ray->side == 1 && ray->step_y > 0) //남쪽 벽
+	else if (ray->side == 1 && ray->step_y > 0)
 		ray->tex_num = TEX_SO;
-	else // 북쪽 벽
+	else
 		ray->tex_num = TEX_NO;
 }
 

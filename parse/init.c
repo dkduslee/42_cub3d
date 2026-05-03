@@ -6,7 +6,7 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:09:59 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:28:04 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/03 16:15:36 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_file_valid(char *file)
 		return (-1);
 	while (path[i])
 		i++;
-	// 이거 조건문 맞아요?
+	// 이거 조건문 맞아요? 맞는데 틀렸다고 체크하는 것처럼 보이긴 함.
 	if ((ft_strlen(path[i - 1]) == 4)
 		&& (ft_strncmp(path[i - 1], ".cub", 4) == 0))
 		return (free_str(path), -1);
