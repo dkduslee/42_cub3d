@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR) -g
-SRCS = main.c init.c parse.c color_parse.c texture_parse.c mlx_init.c parse_util.c exit_msg.c free.c window.c map.c map_util.c
+SRCS = main.c init.c parse.c color_parse.c texture_parse.c mlx_init.c parse_util.c exit_msg.c free.c window.c map.c map_util.c player_parse.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = ../Libft

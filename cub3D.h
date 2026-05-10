@@ -116,14 +116,15 @@ void    init_data(t_arg *arg, char *file);
 int     is_file_valid(char *file);
 int     get_window_size(t_arg *arg, t_map *map, int fd);
 int     img_parse(t_arg *arg, t_map *map, int fd);
-void    map_check(t_arg *arg, char **grid, int i, char *line);
-void    texture_check(t_arg *arg, t_map *map, char *line);
-void    color_check(t_arg *arg, t_map *map, char *line);
+int    map_check(char **grid, int i, char *line);
+int	texture_check(t_arg *arg, t_map *map, char *line);
+int	color_check(t_arg *arg, t_map *map, char *line);
 int     all_check(t_map *map);
 int     map_vaild(t_arg *arg, t_map *map);
 char    non_whitespace(char *str);
 char    **copy_map(t_arg *arg, t_map *map, char **grid);
 int     mlx_setting(t_arg *arg, t_game *game, t_map *map);
+int     find_player(t_arg *arg, t_player *player, char **grid);
 
 /* render.c */
 void    render(t_game *game);
@@ -152,16 +153,15 @@ int     handle_window_close(t_game *game);
 int     get_pixel_color(t_img *img, int x, int y);
 void    put_pixel(t_game *game, int x, int y, int color);
 void    free_str(char **str);
-void    exit_msg(t_arg *arg, char *msg);
+void	free_all(t_arg *arg);
+void	free_all_exe(t_game *game);
+void	exit_msg(t_arg *arg, char *msg, int flag);
 
 /* init.c / parse */
 void	init_data(t_arg *arg, char *file);
 int		is_file_valid(char *file);
 int		get_window_size(t_arg *arg, t_map *map, int fd);
 int		img_parse(t_arg *arg, t_map *map, int fd);
-void	map_check(t_arg *arg, char **grid, int i, char *line);
-void	texture_check(t_arg *arg, t_map *map, char *line);
-void	color_check(t_arg *arg, t_map *map, char *line);
 int		all_check(t_map *map);
 int		map_vaild(t_arg *arg, t_map *map);
 char	non_whitespace(char *str);
@@ -169,7 +169,6 @@ char	**copy_map(t_arg *arg, t_map *map, char **grid);
 
 /* utils */
 void	free_str(char **str);
-void	exit_msg(t_arg *arg, char *msg);
 
 /* mlx_init.c */
 int		mlx_setting(t_arg *arg, t_game *game, t_map *map);

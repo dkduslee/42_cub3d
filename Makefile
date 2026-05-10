@@ -11,7 +11,7 @@ MLX_DIR     = ./minilibx-linux/
 SRC_FILES   = $(PARSE_DIR)color_parse.c $(PARSE_DIR)exit_msg.c $(PARSE_DIR)free.c \
               $(PARSE_DIR)init.c $(PARSE_DIR)map_util.c $(PARSE_DIR)map.c \
               $(PARSE_DIR)mlx_init.c $(PARSE_DIR)parse_util.c $(PARSE_DIR)parse.c \
-              $(PARSE_DIR)texture_parse.c $(PARSE_DIR)window.c \
+              $(PARSE_DIR)player_parse.c $(PARSE_DIR)texture_parse.c $(PARSE_DIR)window.c \
               $(EXCUTE_DIR)event.c $(EXCUTE_DIR)move.c $(EXCUTE_DIR)raycast.c \
               $(EXCUTE_DIR)render.c \
               ./main.c

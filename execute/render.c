@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 12:14:17 by aylee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:18:33 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/05 13:21:21 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	draw_walls(t_game *game)
 */
 void	render(t_game *game)
 {
-	printf("Rendering frame...%s\n", game->map.grid[0]); // 디버그용: 맵 데이터 출력
+//	printf("Rendering frame...%s\n", game->map.grid[0]); // 디버그용: 맵 데이터 출력
 	draw_ceiling(game);
 	draw_floor(game);
 	draw_walls(game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:57:56 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:17:37 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/05 13:44:52 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,71 +40,6 @@ int	is_walls_valid(t_arg *arg, char **grid)
 	return (arg->is_valid);
 }
 
-int set_dir_plane(t_player *player, char c)
-{
-	if (c == 'N')
-	{
-		player->dir_x = 0;
-		player->dir_y = -1;
-		player->plane_x = 0.66;
-		player->plane_y = 0;
-	}
-	else if (c == 'S')
-	{
-		player->dir_x = 0;
-		player->dir_y = 1;
-		player->plane_x = -0.66;
-		player->plane_y = 0;
-	}
-	else if (c == 'E')
-	{
-		player->dir_x = 1;
-		player->dir_y = 0;
-		player->plane_x = 0;
-		player->plane_y = 0.66;
-	}
-	else if (c == 'W')
-	{
-		player->dir_x = -1;
-		player->dir_y = 0;
-		player->plane_x = 0;
-		player->plane_y = -0.66;
-	}
-	else
-		return (-1);
-	return (0);
-}
-
-
-int	find_player(t_arg *arg, t_player *player, char **grid)
-{
-	int	i;
-	int	j;
-	int	ret;
-
-	i = 0;
-	ret = -1;
-	while (grid[i])
-	{
-		j = 0;
-		while (grid[i][j])
-		{
-			if (ft_strchr("NSEW", grid[i][j]))
-			{
-				player->pos_y = i;
-				player->pos_x = j;
-				set_dir_plane(player, grid[i][j]);
-				ret++;
-			}
-			j++;
-		}
-		i++;
-	}
-	if (ret > 0)
-		exit_msg(arg, "Only one Player is required");
-	return (ret);
-}
-
 int	find_map_invaild_c(char **grid)
 {
 	int	i;
@@ -130,14 +65,14 @@ int	map_vaild(t_arg *arg, t_map *map)
 	char	**temp_map;
 
 	if (find_player(arg, &(arg->player), map->grid) < 0)
-		exit_msg(arg, "Player is required");
+		exit_msg(arg, "Player is required", 0);
 	if (find_map_invaild_c(map->grid) < 0)
-		exit_msg(arg, "Map allowed charactors are '1', '0', \"NSEW\" ");
+		exit_msg(arg, "Map allowed charactors are '1', '0', \"NSEW\" ", 0);
 	temp_map = copy_map(arg, map, map->grid);
 	if (!is_walls_valid(arg, temp_map))
 	{
 		free_str(temp_map);
-		exit_msg(arg, "Map not closed");
+		exit_msg(arg, "Map not closed", 0);
 	}
 	free_str(temp_map);
 	return (0);

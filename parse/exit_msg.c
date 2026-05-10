@@ -3,19 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exit_msg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 15:57:06 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:17:31 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/05 13:54:42 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	exit_msg(t_arg *arg, char *msg)
+void	exit_msg(t_arg *arg, char *msg, int flag)
 {
 	(void)arg;
 	printf("Error\n");
 	printf("%s\n", msg);
-	exit(1);
+	if (flag == 1)
+	{
+		free_all(arg);
+		exit(1);
+	}
 }
