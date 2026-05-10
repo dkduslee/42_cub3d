@@ -6,24 +6,23 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 10:42:15 by aylee             #+#    #+#             */
-/*   Updated: 2026/05/10 12:59:10 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/10 13:46:32 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	calc_wall_height(t_game *game, t_ray *ray,
-			t_draw *things)
+void	calc_wall_height(t_game *game, t_ray *ray, t_draw *things)
 {
 	(void)game;
 	if (ray->side == 0)
 		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
 		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
-    if (ray->perp_wall_dist < 0.003)
-    {
-        ray->perp_wall_dist = 0.003;
-    }
+	if (ray->perp_wall_dist < 0.003)
+	{
+		ray->perp_wall_dist = 0.003;
+	}
 	things->height = (int)(HEIGHT / ray->perp_wall_dist);
 	things->start = -things->height / 2 + HEIGHT / 2;
 	if (things->start < 0)
@@ -43,7 +42,8 @@ static void	cal_tex(t_game *game, t_ray *ray, t_draw *things)
 		wall_x = game->player.pos_x + ray->perp_wall_dist * ray->dir_x;
 	wall_x -= floor(wall_x);
 	things->tex_x = (int)(wall_x * (double)TEX_WIDTH);
-	if ((ray->side == 0 && ray->dir_x > 0) || (ray->side == 1 && ray->dir_y < 0))
+	if ((ray->side == 0 && ray->dir_x > 0)
+		|| (ray->side == 1 && ray->dir_y < 0))
 		things->tex_x = TEX_WIDTH - things->tex_x - 1;
 }
 
