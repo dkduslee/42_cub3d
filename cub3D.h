@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 15:51:21 by solee             #+#    #+#             */
-/*   Updated: 2026/05/10 00:00:00 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/10 13:54:34 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int		map_vaild(t_arg *arg, t_map *map);
 int		find_player(t_arg *arg, t_player *player, char **grid);
 char	non_whitespace(char *str);
 char	**copy_map(t_arg *arg, t_map *map, char **grid);
+int		is_space(char *file_dup, char c);
 
 /* mlx_init.c */
 int		mlx_setting(t_arg *arg, t_game *game, t_map *map);

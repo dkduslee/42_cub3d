@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:10:21 by solee             #+#    #+#             */
-/*   Updated: 2026/05/05 14:35:17 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/10 13:44:44 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,11 @@ int	map_parse(t_map *map, char **file_dup, int count)
 	return (0);
 }
 
-int	is_space(char *file_dup, char c)
-{
-	int	i;
-
-	i = 0;
-	while (file_dup[i] && (file_dup[i] == ' '
-			|| file_dup[i] == '\t' || file_dup[i] == '\n'))
-		i++;
-	if (file_dup[i] && file_dup[i] == c)
-		return (0);
-	return (-1);
-}
-
 int	map_func(t_arg *arg, char *line, int *count, int *map_check)
 {
 	*map_check = is_space(line, '1');
-	if (texture_check(arg, &(arg->map), line) < 0 || color_check(arg, &(arg->map), line) < 0)
+	if (texture_check(arg, &(arg->map), line) < 0
+		|| color_check(arg, &(arg->map), line) < 0)
 		return (-1);
 	(*count)++;
 	return (0);
@@ -72,7 +60,7 @@ void	line_func_free(int fd, char *line, char **file_dup, t_arg *arg)
 	exit(0);
 }
 
-int line_func(t_arg *arg, char **file_dup, int fd)
+int	line_func(t_arg *arg, char **file_dup, int fd)
 {
 	char	*line;
 	int		i;
