@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:59:06 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:17:34 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/05 13:44:29 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ char	**copy_map(t_arg *arg, t_map *map, char **grid)
 	i = 0;
 	tmp = ft_calloc((map->height + 1), sizeof(char *));
 	if (!tmp)
-		exit_msg(arg, "Malloc error");
+		exit_msg(arg, "Malloc error", 0);
 	while (i < map->height)
 	{
 		tmp[i] = ft_strdup(grid[i]);
 		if (!tmp[i])
-			exit_msg(arg, "Malloc error");
+			exit_msg(arg, "Malloc error", 0);
 		i++;
 	}
 	tmp[i] = NULL;

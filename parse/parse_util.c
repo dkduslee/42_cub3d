@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:27:20 by solee             #+#    #+#             */
-/*   Updated: 2026/05/01 19:17:47 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/05 13:45:13 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ int	all_check(t_map *map)
 	return (-1);
 }
 
-void	map_check(t_arg *arg, char **grid, int i, char *line)
+int	map_check(char **grid, int i, char *line)
 {
 	if (!line)
 	{
 		grid[i] = NULL;
-		return ;
+		return (-1);
 	}
 	grid[i] = ft_strdup(line);
 	if (!grid[i])
-		exit_msg(arg, "Malloc error");
+		return (-1);
+	return (0);
 }

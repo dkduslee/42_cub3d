@@ -6,7 +6,7 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 12:17:24 by aylee             #+#    #+#             */
-/*   Updated: 2026/05/03 20:42:16 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/10 12:07:39 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,25 @@ static void	move_forward_back(t_game *game, double speed)
 {
 	t_player	*p;
 	char		**g;
+	double		next_x;
+	double		next_y;
 
 	p = &game->player;
 	g = game->map.grid;
-	if (g[(int)(p->pos_y)][(int)(p->pos_x + p->dir_x * speed)] != '1')
-		p->pos_x += p->dir_x * speed;
-	if (g[(int)(p->pos_y + p->dir_y * speed)][(int)(p->pos_x)] != '1')
-		p->pos_y += p->dir_y * speed;
+	next_x = p->pos_x + p->dir_x * speed;
+	next_y = p->pos_y + p->dir_y * speed;
+	if (g[(int)(next_y)][(int)(next_x)] != '1')
+	{
+		p->pos_x = next_x;
+		p->pos_y = next_y;
+	}
+	else
+	{
+		if (g[(int)(p->pos_y)][(int)(next_x)] != '1')
+			p->pos_x = next_x;
+		if (g[(int)(next_y)][(int)(p->pos_x)] != '1')
+			p->pos_y = next_y;
+	}
 }
 
 static void	move_strafe(t_game *game, double speed)
