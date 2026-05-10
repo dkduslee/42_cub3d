@@ -6,16 +6,12 @@
 /*   By: aylee <aylee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 12:17:21 by aylee             #+#    #+#             */
-/*   Updated: 2026/05/03 17:24:42 by aylee            ###   ########.fr       */
+/*   Updated: 2026/05/10 09:41:50 by aylee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-/*
-** 키 입력 핸들러.
-** 이동/회전 후 render() 를 호출해 즉시 화면을 갱신한다.
-*/
 int	handle_key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
@@ -32,9 +28,6 @@ int	handle_key_press(int keycode, t_game *game)
 	return (0);
 }
 
-/*
-** 윈도우 닫기(X 버튼) 핸들러.
-*/
 int	handle_window_close(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
