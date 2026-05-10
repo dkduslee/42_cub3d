@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 16:32:10 by solee             #+#    #+#             */
-/*   Updated: 2026/05/05 14:40:58 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/10 13:48:18 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ int	color_check(t_arg *arg, t_map *map, char *line)
 	char	**color;
 	char	c;
 
-	if (!line[0] || !line[1])
-		return (0);
-	if ((ft_strncmp(line, "F", 1) != 0) && (ft_strncmp(line, "C", 1) != 0))
+	if (!line[0] || !line[1] || (is_space(line, 'F') && is_space(line, 'C')))
 		return (0);
 	color = get_color(arg, line, &c);
 	if (!color)
@@ -59,17 +57,18 @@ int	color_check(t_arg *arg, t_map *map, char *line)
 	if (c == 'F')
 	{
 		if (map->floor_color != -1)
-			return (exit_msg(arg, "Need only one floor color", 0), free_str(color), -1);
+			return (exit_msg(arg, "Need only one floor color", 0)
+				, free_str(color), -1);
 		map->floor_color = create_trgb(0, ft_atoi(color[0]),
 				ft_atoi(color[1]), ft_atoi(color[2]));
 	}
 	if (c == 'C')
 	{
 		if (map->ceil_color != -1)
-			return (exit_msg(arg, "Need only one ceiling color", 0), free_str(color), -1);
+			return (exit_msg(arg, "Need only one ceiling color", 0)
+				, free_str(color), -1);
 		map->ceil_color = create_trgb(0, ft_atoi(color[0]),
 				ft_atoi(color[1]), ft_atoi(color[2]));
 	}
-	free_str(color);
-	return (0);
+	return (free_str(color), 0);
 }

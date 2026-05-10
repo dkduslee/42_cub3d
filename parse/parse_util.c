@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:27:20 by solee             #+#    #+#             */
-/*   Updated: 2026/05/05 13:45:13 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/10 13:45:41 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ int	map_check(char **grid, int i, char *line)
 	if (!grid[i])
 		return (-1);
 	return (0);
+}
+
+int	is_space(char *file_dup, char c)
+{
+	int	i;
+
+	i = 0;
+	while (file_dup[i] && (file_dup[i] == ' '
+			|| file_dup[i] == '\t' || file_dup[i] == '\n'))
+		i++;
+	if (file_dup[i] && file_dup[i] == c)
+		return (0);
+	return (-1);
 }

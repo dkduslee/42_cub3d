@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 12:36:55 by solee             #+#    #+#             */
-/*   Updated: 2026/05/05 13:46:06 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/10 13:41:59 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int	find_player(t_arg *arg, t_player *player, char **grid)
 		i++;
 	}
 	if (ret > 0)
-		exit_msg(arg, "Only one Player is required", 0);
+		exit_msg(arg, "Only one Player is required", 1);
 	return (ret);
 }

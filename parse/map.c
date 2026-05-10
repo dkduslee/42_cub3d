@@ -6,7 +6,7 @@
 /*   By: solee <solee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:57:56 by solee             #+#    #+#             */
-/*   Updated: 2026/05/05 13:44:52 by solee            ###   ########.fr       */
+/*   Updated: 2026/05/10 13:39:50 by solee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ int	map_vaild(t_arg *arg, t_map *map)
 	char	**temp_map;
 
 	if (find_player(arg, &(arg->player), map->grid) < 0)
-		exit_msg(arg, "Player is required", 0);
+		exit_msg(arg, "Player is required", 1);
 	if (find_map_invaild_c(map->grid) < 0)
-		exit_msg(arg, "Map allowed charactors are '1', '0', \"NSEW\" ", 0);
+		exit_msg(arg, "Map allowed charactors are '1', '0', \"NSEW\" ", 1);
 	temp_map = copy_map(arg, map, map->grid);
 	if (!is_walls_valid(arg, temp_map))
 	{
 		free_str(temp_map);
-		exit_msg(arg, "Map not closed", 0);
+		exit_msg(arg, "Map not closed", 1);
 	}
 	free_str(temp_map);
 	return (0);
